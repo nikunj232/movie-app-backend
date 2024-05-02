@@ -54,7 +54,7 @@ module.exports.getMovieShowAvailability = catchAsync(async (req, res) => {
         const showBookedSeat = await showService.getShowBookedSeat(showData._id)
         resData = { 
             showData,
-            bookedSeat : showBookedSeat[0]?.bookedSeats
+            bookedSeat : showBookedSeat[0]?.bookedSeats ?? []
         }
     }
     

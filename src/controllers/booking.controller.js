@@ -1,8 +1,10 @@
+const { mongo } = require("mongoose");
 const { str2regex } = require("../helpers/function.helper");
 const { bookingService, showService } = require("../services");
 const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
 const pick = require("../utils/pick");
+const { default: mongoose } = require("mongoose");
 
 module.exports.createBooking = catchAsync(async (req, res) => {
     let showDetails
@@ -14,6 +16,8 @@ module.exports.createBooking = catchAsync(async (req, res) => {
         seats: req.body.seats
     }
     const createdBooking = await bookingService.createBooking(bookingData, req)
+    console.log({id: showDetails.id}, {available_seats: showDetails.available_seats - req.body.seats.length}, "===============================================available seats");
+    const updatedShowDetails = await showService.updateShow(({_id: showDetails.id}), {available_seats: showDetails.available_seats - req.body.seats.length})
     seatNumberString = req.body.seats.join(", ")
     res
         .status(201)

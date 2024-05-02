@@ -43,7 +43,7 @@ exports.getShowBookedSeat = async (showId) => {
 }
 
 exports.updateShow = async (query, data) => {
-    const updatedShowDoc = await Show.findOneAndUpdate(query, { $set: data }, { new: false })
+    const updatedShowDoc = await Show.updateOne(query, { $set: data }, { new: false })
     return updatedShowDoc
 }
 
