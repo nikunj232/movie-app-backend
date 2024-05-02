@@ -46,8 +46,8 @@ module.exports.getBooking = catchAsync(async (req, res) => {
 
 module.exports.deleteBooking = catchAsync(async (req, res) => {
     const {bookingId} = req.params
-    const deletedBooking = await bookingService.deleteBooking(bookingId)
-
+    const deletedBooking = await bookingService.deleteBooking({_id: bookingId, user:req.user._id})
+    console.log(deletedBooking, "deleted data", {id: bookingId, user:req.user._doc._id});
     res
         .status(200)
         .json({success:true, message:"Booking deleted successfully!"})

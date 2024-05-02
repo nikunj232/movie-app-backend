@@ -123,7 +123,7 @@ exports.findBooking = async (query) => {
     return bookingDoc
 }
 
-exports.deleteBooking = async (id) => {
-    const deleteBookingDoc = await Booking.deleteOne({id})
+exports.deleteBooking = async (query) => {
+    const deleteBookingDoc = await Booking.deleteOne(query)
     return deleteBookingDoc
 }
