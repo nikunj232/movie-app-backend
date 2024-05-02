@@ -26,6 +26,10 @@ const UserSchema = mongoose.Schema(
         //         ref: 'Booking' 
         //     }
         // ]
+    },
+    { 
+        timestamps: true, 
+        versionKey: false 
     }
 );
   

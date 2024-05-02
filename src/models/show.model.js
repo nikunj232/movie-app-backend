@@ -26,7 +26,12 @@ const ShowSchema = new mongoose.Schema(
             default: 128 
         },
         // bookedSeats: { type: new Array(Number) } // Array of booked seat numbers
-  });
+    },
+    { 
+        timestamps: true, 
+        versionKey: false 
+    }
+);
 
 ShowSchema.plugin(toJSON)
 const Show = mongoose.model('Show', ShowSchema)
